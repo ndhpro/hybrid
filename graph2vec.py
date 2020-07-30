@@ -81,7 +81,7 @@ def feature_extractor(path, rounds):
     """
     graph, features, name = dataset_reader(path)
     machine = WeisfeilerLehmanMachine(graph, features, rounds)
-    doc = TaggedDocument(words=machine.extracted_features, tags=["g_" + name[:name.find('_')]])
+    doc = TaggedDocument(words=machine.extracted_features, tags=["g_" + name])
     return doc
 
 def save_embedding(output_path, model, files, dimensions):
@@ -97,7 +97,7 @@ def save_embedding(output_path, model, files, dimensions):
     beg = [name[:name.find('_')] for name in beg_list]
     for f in files:
         identifier = f.split("/")[-1].replace(".json", "")
-        identifier = identifier[:identifier.find('_')]
+        # identifier = identifier[:identifier.find('_')]
         label = 0 if identifier in beg else 1
         out.append([identifier] + list(model.docvecs["g_"+identifier]) + [label])
     column_names = ["name"]+["x_"+str(dim) for dim in range(dimensions)] + ["label"]
