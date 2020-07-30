@@ -60,7 +60,7 @@ def dataset_reader(path):
     :return features: Features hash table.
     :return name: Name of the graph.
     """
-    name = path.strip(".json").split("/")[-1]
+    name = path.replace(".json", "").split("/")[-1]
     data = json.load(open(path))
     graph = nx.from_edgelist(data["edges"])
 
@@ -93,13 +93,12 @@ def save_embedding(output_path, model, files, dimensions):
     :param dimensions: The embedding dimension parameter.
     """
     out = []
-    label = 1
     beg_list = pd.read_csv('input/list_benign.csv').values.flatten()
+    beg = [name[:name.find('_')] for name in beg_list]
     for f in files:
-        identifier = f.split("/")[-1].strip(".json")
-        for i in beg_list:
-            if identifier in i:
-                label = 0
+        identifier = f.split("/")[-1].replace(".json", "")
+        identifier = identifier[:identifier.find('_')]
+        label = 0 if identifier in beg else 1
         out.append([identifier] + list(model.docvecs["g_"+identifier]) + [label])
     column_names = ["name"]+["x_"+str(dim) for dim in range(dimensions)] + ["label"]
     out = pd.DataFrame(out, columns=column_names)
