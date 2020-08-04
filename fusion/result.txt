@@ -1,0 +1,95 @@
+Naive Bayes:
+Accuracy: 0.7710
+ROC AUC: 0.7873
+TPR: 0.7487
+FPR: 0.1741
+Classification report:
+              precision    recall  f1-score   support
+
+           0     0.5706    0.8259    0.6749       563
+           1     0.9141    0.7487    0.8232      1393
+
+    accuracy                         0.7710      1956
+   macro avg     0.7423    0.7873    0.7490      1956
+weighted avg     0.8152    0.7710    0.7805      1956
+
+Confusion matrix:
+[[ 465   98]
+ [ 350 1043]]
+----------------------------------------------------------------
+Decision Tree:
+Accuracy: 0.9555
+ROC AUC: 0.9450
+TPR: 0.9698
+FPR: 0.0799
+Classification report:
+              precision    recall  f1-score   support
+
+           0     0.9250    0.9201    0.9225       563
+           1     0.9678    0.9698    0.9688      1393
+
+    accuracy                         0.9555      1956
+   macro avg     0.9464    0.9450    0.9457      1956
+weighted avg     0.9555    0.9555    0.9555      1956
+
+Confusion matrix:
+[[ 518   45]
+ [  42 1351]]
+----------------------------------------------------------------
+k-Nearest Neighbors:
+Accuracy: 0.9842
+ROC AUC: 0.9751
+TPR: 0.9964
+FPR: 0.0462
+Classification report:
+              precision    recall  f1-score   support
+
+           0     0.9908    0.9538    0.9719       563
+           1     0.9816    0.9964    0.9890      1393
+
+    accuracy                         0.9842      1956
+   macro avg     0.9862    0.9751    0.9805      1956
+weighted avg     0.9842    0.9842    0.9841      1956
+
+Confusion matrix:
+[[ 537   26]
+ [   5 1388]]
+----------------------------------------------------------------
+SVM:
+Accuracy: 0.9918
+ROC AUC: 0.9890
+TPR: 0.9957
+FPR: 0.0178
+Classification report:
+              precision    recall  f1-score   support
+
+           0     0.9893    0.9822    0.9857       563
+           1     0.9928    0.9957    0.9943      1393
+
+    accuracy                         0.9918      1956
+   macro avg     0.9911    0.9890    0.9900      1956
+weighted avg     0.9918    0.9918    0.9918      1956
+
+Confusion matrix:
+[[ 553   10]
+ [   6 1387]]
+----------------------------------------------------------------
+Random Forest:
+Accuracy: 0.9852
+ROC AUC: 0.9748
+TPR: 0.9993
+FPR: 0.0497
+Classification report:
+              precision    recall  f1-score   support
+
+           0     0.9981    0.9503    0.9736       563
+           1     0.9803    0.9993    0.9897      1393
+
+    accuracy                         0.9852      1956
+   macro avg     0.9892    0.9748    0.9817      1956
+weighted avg     0.9854    0.9852    0.9851      1956
+
+Confusion matrix:
+[[ 535   28]
+ [   1 1392]]
+----------------------------------------------------------------
