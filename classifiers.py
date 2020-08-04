@@ -82,16 +82,19 @@ def load_data(args):
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, random_state=args.seed, test_size=0.3, stratify=y)
+    print(f'\tOriginal: {X_train.shape} {X_test.shape}')
 
     fs = SelectFromModel(
         LinearSVC(penalty="l1", dual=False, random_state=args.seed).fit(X_train, y_train), prefit=True)
-    X = fs.transform(X)
+    X_train = fs.transform(X_train)
+    X_test = fs.transform(X_test)
     pickle.dump(fs, open(f'{args.output_path}model/fs.sav', 'wb'))
 
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
     pickle.dump(scaler, open(f'{args.output_path}model/scaler.sav', 'wb'))
+    print(f'\tPreprocessed: {X_train.shape} {X_test.shape}')
 
     return X_train, y_train, X_test, y_test
 
@@ -126,10 +129,9 @@ def main(args):
     colors = ['blue', 'orange', 'green', 'red',
               'purple', 'brown', 'pink', 'gray']
 
-    print('Preprocessing data...', end=' ', flush=True)
+    print('Preprocessing data...')
     t = time()
     X_train, y_train, X_test, y_test = load_data(args)
-    print('Done in %0.2f' % (time()-t))
 
     for name, fname, est, hyper in zip(names, fnames, classifiers, hyperparam):
         print(f'{name}...')
