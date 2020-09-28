@@ -60,7 +60,7 @@ def report(args, names, y_true, y_pred):
 
 def draw_roc(args, names, colors, y_true, y_pred):
     plt.figure()
-    for name, color in zip(names, colors):
+    for name, color in zip(names[1:], colors[1:]):
         fpr, tpr, _ = metrics.roc_curve(y_true[name], y_pred[name])
         auc = metrics.roc_auc_score(y_true[name], y_pred[name])
         plt.plot(fpr, tpr, color=color,
